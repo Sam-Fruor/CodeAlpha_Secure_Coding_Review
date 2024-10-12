@@ -21,7 +21,7 @@ The attached Flask application demonstrates a simple login and user profile syst
 
 This project includes the following files:
 
-1. **Flask.txt**: Contains the original Flask application code with security vulnerabilities.
+1. **Flask.py**: Contains the original Flask application code with security vulnerabilities.
 2. **Vulnerabilities.txt**: Detailed explanation of the types of vulnerabilities present in the code.
 3. **Recommendations.txt**: Provides suggestions on how to secure the code and implement best practices.
 4. **Analysis Tools.txt**: Lists various tools and commands for performing security testing on the code.
