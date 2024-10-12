@@ -1,0 +1,37 @@
+Static Code Analysis Tools
+Static code analyzers can help identify vulnerabilities in your code. Some popular tools include:
+
+Bandit: A Python-specific security linter that identifies common security issues in Python code.
+
+Installation:
+bash
+Copy code
+pip install bandit
+Usage:
+bash
+Copy code
+bandit -r my_flask_app.py
+
+PyLint: Although primarily used for code quality, PyLint also detects some security issues.
+
+Installation:
+bash
+Copy code
+pip install pylint
+Usage:
+bash
+Copy code
+pylint my_flask_app.py
+
+SonarQube: A popular platform for continuous inspection of code quality and security. It supports multiple languages, including Python.
+
+Flake8: A tool that checks the style guide enforcement and can also identify potential issues in the code.
+
+Installation:
+bash
+Copy code
+pip install flake8
+Usage:
+bash
+Copy code
+flake8 my_flask_app.py

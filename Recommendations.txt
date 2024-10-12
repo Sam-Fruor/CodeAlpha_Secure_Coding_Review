@@ -1,0 +1,62 @@
+Secure Coding Recommendations
+
+1. Prevent SQL Injection:
+
+Use parameterized queries or ORM (Object Relational Mapper) to prevent SQL injection:
+python
+Copy code
+query = "SELECT * FROM users WHERE username=? AND password=?"
+cur.execute(query, (username, password))
+Alternatively, use an ORM like SQLAlchemy, which handles query construction securely.
+
+2.Prevent XSS (Cross-Site Scripting):
+
+Always escape and sanitize user input before rendering it in HTML. Flask’s render_template automatically escapes input by default:
+python
+Copy code
+return render_template('profile.html', username=username)
+In templates, use:
+html
+Copy code
+{{ username | e }}
+This ensures that the output is properly escaped to prevent XSS.
+
+3. Secure Password Handling:
+
+Never store passwords as plain text. Use a library like bcrypt or werkzeug.security to hash and salt passwords:
+python
+Copy code
+from werkzeug.security import generate_password_hash, check_password_hash
+
+hashed_password = generate_password_hash(password)
+# Check during login
+check_password_hash(hashed_password, password)
+
+4. Input Validation and Sanitization:
+
+Use form validation to ensure user inputs conform to expected formats. Libraries like WTForms can help validate input data:
+python
+Copy code
+from wtforms import Form, StringField, PasswordField
+from wtforms.validators import DataRequired
+
+class LoginForm(Form):
+    username = StringField('Username', [DataRequired()])
+    password = PasswordField('Password', [DataRequired()])
+
+5. Environment Variables for Configuration:
+
+Instead of hardcoding sensitive information like database connection details, use environment variables:
+python
+Copy code
+import os
+DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///example.db')
+
+6. Secure Session Management:
+
+Ensure secure session handling by setting appropriate security flags for cookies. In Flask, enable secure cookies:
+python
+Copy code
+app.config['SESSION_COOKIE_SECURE'] = True
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'

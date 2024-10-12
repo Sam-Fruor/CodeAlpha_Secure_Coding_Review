@@ -1,0 +1,18 @@
+Vulnerabilities in the Code
+SQL Injection:
+
+In the /login route, the query uses user input directly in the SQL query, making it vulnerable to SQL injection.
+Example: A malicious user could input ' OR 1=1-- as the username or password to bypass authentication.
+Cross-Site Scripting (XSS):
+
+In the /profile/<username> route, user input is embedded directly into the HTML output without proper sanitization, making it vulnerable to XSS attacks.
+Example: A user could enter a username like <script>alert('XSS')</script> and execute JavaScript code in the browser.
+Hardcoded Database Credentials:
+
+The database connection is hardcoded with sensitive information like the database file path, which is a bad practice. This could expose sensitive data if not properly secured.
+Insecure Password Storage:
+
+The application compares passwords directly with the values in the database without hashing or salting, leading to potential password theft in case of a data breach.
+Lack of Input Validation:
+
+The application does not validate or sanitize any user input (e.g., username and password), which leaves the system open to various types of input-based attacks, including injection attacks.
